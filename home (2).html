@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script>
+function getQueryParams() {
+    const params = new URLSearchParams(window.location.search);
+    return {
+        propertyId: params.get('propertyId')
+    };
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const { propertyId } = getQueryParams();
+    if (propertyId) {
+        const propertyDetails = {
+            property1: {
+                city: "دمشق",
+                area: "ركن الدين",
+                floor: "الطابق الثالث",
+                parking: "متوفر كراج",
+                ownership: "طابو",
+                balcony: "بلكون مساحة 12 متر",
+                furnished: "مفروشة",
+                images: ["image1.jpg", "image2.jpg"]
+            },
+            property2: {
+                city: "حمص",
+                area: "وسط البلد",
+                floor: "الأرضي",
+                parking: "غير متوفر",
+                ownership: "طابو",
+                balcony: "بدون بلكون",
+                furnished: "غير مفروشة",
+                images: ["image3.jpg"]
+            },
+            property3: {
+                city: "دمشق",
+                area: "المزة",
+                floor: "الطابق الأول",
+                parking: "متوفر كراج",
+                ownership: "طابو",
+                balcony: "بلكون مساحة 15 متر",
+                furnished: "غير مفروشة",
+                images: ["image4.jpg", "image5.jpg"]
+            }
+            // Add more properties as needed
+        };
+        
+        const details = propertyDetails[propertyId];
+        if (details) {
+            const detailsContainer = document.getElementById('property-details');
+            let imagesHtml = details.images.map(img => `<img src="${img}" alt="صورة العقار" style="width:100px;height:100px;">`).join('');
+            detailsContainer.innerHTML = `
+                <h2>تفاصيل العقار المختار</h2>
+                <p><strong>المدينة:</strong> ${details.city}</p>
+                <p><strong>المنطقة:</strong> ${details.area}</p>
+                <p><strong>الطابق:</strong> ${details.floor}</p>
+                <p><strong>كراج:</strong> ${details.parking}</p>
+                <p><strong>الملكية:</strong> ${details.ownership}</p>
+                <p><strong>بلكون:</strong> ${details.balcony}</p>
+                <p><strong>مفروشة:</strong> ${details.furnished}</p>
+                <div>${imagesHtml}</div>
+            `;
+        }
+    }
+});
+
+function validateForm() {
+    // Validate form inputs
+    const fullName = document.getElementById('fullname').value;
+    const nationalId = document.getElementById('nationalId').value;
+    const dob = document.getElementById('dob').value;
+    const phone = document.getElementById('phone').value;
+    const email = document.getElementById('email').value;
+    const captcha = document.getElementById('captcha').value;
+
+    if (!fullName || !nationalId || !dob || !phone || !email || !captcha) {
+        alert('يرجى ملء جميع الحقول.');
+        return false;
+    }
+
+    // Further validation logic here
+
+    alert('تم إرسال النموذج بنجاح!');
+    return false;
+}
+</script>
+    <title>متابعة</title>
+</head>
+<body>
+    <header>
+        <h1>متابعة</h1>
+    </header>
+    <main>
+        <div id="property-details"></div>
+        <form onsubmit="return validateForm()">
+            <label for="fullname">الاسم الكامل:</label>
+            <input type="text" id="fullname" name="fullname" required><br>
+
+            <label for="nationalId">الرقم الوطني:</label>
+            <input type="text" id="nationalId" name="nationalId" pattern="\d{11}" required><br>
+
+            <label for="dob">تاريخ الولادة:</label>
+            <input type="date" id="dob" name="dob" required><br>
+
+            <label for="phone">رقم الموبايل:</label>
+            <input type="tel" id="phone" name="phone" pattern="09\d{8}" required><br>
+
+            <label for="email">الإيميل:</label>
+            <input type="email" id="email" name="email" required><br>
+
+           
+            <label for="captcha">أدخل الرمز:</label>
+            <input type="text" id="captcha" name="captcha" required><br>
+
+            <!-- reCAPTCHA widget -->
+            <div class="g-recaptcha" data-sitekey="6LcxZ_spAAAAAFKUR6QvbcQCTUNFEKKZJho9ISfx "></div><br>
+
+          
+           
+            
+
+            <button type="submit">إرسال</button>
+
+            <button>
+                <a href="Captcha.html">متابعة</a>
+            </button>
+            
+        </form>
+    </main>
+    <nav>
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="aboutus.html">About Us</a></li>
+            <li><a href="properties.html">Properties</a></li>
+            <li><a href="home (2).html">Form</a></li>
+             <il><a  href="home (2).html">aeva123.infinityfreeapp.com              </a>       </il>
+        </ul>
+    </nav> 
+    
+   
+
+    
+</body>
+</html

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>العقارات</title>
+
+<link rel="stylesheet" href="style.css">
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('propertyForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (validateForm()) {
+            alert('تم إرسال النموذج بنجاح!');
+        }
+    });
+});
+
+function showDetails(button, propertyId) {
+    const details = {
+        property1: {
+            city: "دمشق",
+            area: "ركن الدين",
+            floor: "الطابق الثالث",
+            parking: "متوفر كراج",
+            ownership: "طابو",
+            balcony: "بلكون مساحة 12 متر",
+            furnished: "مفروشة",
+            images: ["vscode/IMG-20240619-WA0056.jpg", "vscode/IMG-20240619-WA0070.jpg"]
+        },
+        property2: {
+            city: "حمص",
+            area: "وسط البلد",
+            floor: "الأرضي",
+            parking: "غير متوفر",
+            ownership: "طابو",
+            balcony: "بدون بلكون",
+            furnished: "غير مفروشة",
+            images: ["vscode/IMG-20240619-WA0081.jpg"]
+        },
+        property3: {
+            city: "دمشق",
+            area: "المزة",
+            floor: "الطابق الأول",
+            parking: "متوفر كراج",
+            ownership: "طابو",
+            balcony: "بلكون مساحة 15 متر",
+            furnished: "غير مفروشة",
+            images: ["vscode/IMG-20240619-WA0051.jpg", "vscode/IMG-20240619-WA0053.jpg"]
+        },
+        property4: {
+            city: "حلب",
+            area: "الشهباء",
+            floor: "الطابق الثاني",
+            parking: "متوفر كراج",
+            ownership: "طابو",
+            balcony: "بلكون مساحة 10 متر",
+            furnished: "مفروشة",
+            images: ["vscode/IMG-20240619-WA0054.jpg", "vscode/IMG-20240619-WA0085.jpg"]
+        },
+        property5: {
+            city: "اللاذقية",
+            area: "المشروع السابع",
+            floor: "الطابق الرابع",
+            parking: "غير متوفر",
+            ownership: "طابو",
+            balcony: "بلكون مساحة 8 متر",
+            furnished: "غير مفروشة",
+            images: ["vscode/IMG-20240619-WA0052.jpg", "vscode/IMG-20240619-WA0080.jpg"]
+        },
+        property6: {
+       city:"طرطوس" ,
+            area: "الرمل الجنوبي",
+            floor: "الطابق الأول",
+            parking: "متوفر كراج",
+            ownership: "طابو",
+            balcony: "بلكون مساحة 12 متر",
+            furnished: "مفروشة",
+            images: ["vscode/IMG-20240619-WA0070.jpg", "vscode/IMG-20240619-WA0082.jpg"]
+        },
+        property7: {
+            city: "حمص",
+            area: "الحمدانية",
+            floor: "الطابق الأرضي",
+            parking: "غير متوفر",
+            ownership: "طابو",
+            balcony: "بدون بلكون",
+            furnished: "غير مفروشة",
+            images: ["vscode/IMG-20240619-WA0055.jpg"]
+        },
+        property8: {
+            city: "دمشق",
+            area: "المزرعة",
+            floor: "الطابق الخامس",
+            parking: "متوفر كراج",
+            ownership: "طابو",
+            balcony: "بلكون مساحة 20 متر",
+            furnished: "مفروشة",
+            images: ["vscode/IMG-20240619-WA0086.jpg", "vscode/IMG-20240619-WA0054.jpg"]
+        },
+        property9: {
+            city: "اللاذقية",
+            area: "الشيخ ضاهر",
+            floor: "الطابق الثالث",
+            parking: "غير متوفر",
+            ownership: "طابو",
+            balcony: "بلكون مساحة 15 متر",
+            furnished: "غير مفروشة",
+            images: ["vscode/IMG-20240619-WA0083.jpg", "vscode/IMG-20240619-WA0085.jpg"]
+        },
+        property10: {
+            city: "حلب",
+            area: "السريان",
+            floor: "الطابق الثاني",
+            parking: "متوفر كراج",
+            ownership: "طابو",
+            balcony: "بلكون مساحة 12 متر",
+            furnished: "مفروشة",
+            images: ["vscode/IMG-20240619-WA0069.jpg", "vscode/IMG-20240619-WA0053.jpg"]
+        },
+      }
+        const propertyDetails = details[propertyId];
+    const row = button.parentElement.parentElement;
+    const existingDetailsRow = row.nextElementSibling;
+
+    if (existingDetailsRow && existingDetailsRow.classList.contains('details-row')) {
+        existingDetailsRow.remove();
+    } else {
+        const detailsRow = document.createElement('tr');
+        detailsRow.classList.add('details-row');
+        let imagesHtml = propertyDetails.images.map(img => `<img src="${img}" alt="صورة العقار" style="width:100px;height:100px;">`).join('');
+        detailsRow.innerHTML = `
+            <td style="vertical-align: middle; text-align: center;">
+                <strong style="margin: 20px;">المدينة: ${propertyDetails.city}</strong> 
+                <strong style="margin: 20px;">المنطقة: ${propertyDetails.area}</strong>
+            </td>
+            <td style="vertical-align: middle; text-align: center;">
+                <strong style="margin: 20px;">الطابق: ${propertyDetails.floor}</strong> 
+                <strong style="margin: 20px;">كراج: ${propertyDetails.parking}</strong>
+                <strong style="margin: 20px;">الملكية: ${propertyDetails.ownership}</strong>
+            </td>
+            <td style="vertical-align: middle; text-align: center;">
+                <strong style="margin: 20px;">بلكون: ${propertyDetails.balcony}</strong> 
+                <strong style="margin: 20px;">مفروشة: ${propertyDetails.furnished}</strong>
+            </td>
+            <td>${imagesHtml}</td>
+        `;
+        row.insertAdjacentElement('afterend', detailsRow);
+    }
+}
+
+function proceedToNextPage() {
+    const selectedProperty = document.querySelector('input[name="property"]:checked');
+    if (!selectedProperty) {
+        alert('يرجى اختيار عقار قبل المتابعة.');
+        return;
+    }
+    const propertyId = selectedProperty.value;
+    window.location.href = `form.html?propertyId=${propertyId}`;
+}
+</script>
+</head>
+<body>
+    <h1>العقارات</h1>
+    <form id="propertyForm">
+        <table>
+            <thead>
+                <tr>
+                    <th>المدينة</th>
+                    <th>التفاصيل</th>
+                    <th>الإيجار الشهري</th>
+                    <th>اختيار</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>دمشق</td>
+                    <td>شقة غرفة وصالة، مساحة 70 م²</td>
+                    <td>500000 ل.س</td>
+                    <td>
+                        <input type="radio" name="property" value="property1">
+                        <button type="button" onclick="showDetails(this, 'property1')">إظهار التفاصيل</button>
+                    
+                    </td>
+                </tr>
+                <tr>
+                    <td>حمص</td>
+                    <td>دكان، مساحة 50 م²</td>
+                    <td>250000 ل.س</td>
+                    <td>
+                        <input type="radio" name="property" value="property2">
+                        <button type="button" onclick="showDetails(this, 'property2')">إظهار التفاصيل</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>دمشق</td>
+                    <td>فيلا، مساحة 200 م²</td>
+                    <td>1500000 ل.س</td>
+                    <td>
+                        <input type="radio" name="property" value="property3">
+                        <button type="button" onclick="showDetails(this, 'property3')">إظهار التفاصيل</button>
+                    </td>
+                </tr>
+                <tr>
+              <td>حلب</td>
+              <td>متوفر كراج مساحة 10 م²</td>
+<td>20000 ل.س</td>
+              <td><input type="radio" name="property" value="property4">
+                <button type="button" onclick="showDetails(this, 'property4')">اظهار التفاصيل</button>
+            </td>
+
+
+
+
+                </tr>
+              
+              
+                <tr>
+                <td>اللاذقية</td>
+                <td> شقة مساحتها 80 م²</td>
+                <td>500000 ل.س</td>
+                <td>
+                    <input type="radio" name="property" value="property5">
+                    <button type="button" onclick="showDetails(this, 'property5')">إظهار التفاصيل</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>طرطوس</td>
+                <td> كراج مساحته 60 م²</td>
+                <td>400000 ل.س</td>
+                <td>
+                    <input type="radio" name="property" value="property6">
+                    <button type="button" onclick="showDetails(this, 'property6')">إظهار التفاصيل</button>
+                </td>
+            </tr>
+            
+             
+              
+            <tr>
+                <td>حمص</td>
+                <td> شقة مساحتها 70 م²</td>
+                <td>600000 ل.س</td>
+                <td>
+                    <input type="radio" name="property" value="property7">
+                    <button type="button" onclick="showDetails(this, 'property7')">إظهار التفاصيل</button>
+                </td>
+            </tr>
+
+                 
+            <tr>
+                <td>دمشق</td>
+                <td> شقة مساحتها 130 م²</td>
+                <td>1000000 ل.س</td>
+                <td>
+                    <input type="radio" name="property" value="property8">
+                    <button type="button" onclick="showDetails(this, 'property8')">إظهار التفاصيل</button>
+                </td>
+            </tr>
+               
+
+            <tr>
+                <td>اللاذقية</td>
+                <td>شقة مساحتها  80 م²</td>
+                <td>5000000 ل.س</td>
+                <td>
+                    <input type="radio" name="property" value="property9">
+                    <button type="button" onclick="showDetails(this, 'property9')">إظهار التفاصيل</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td>حلب</td>
+                <td>شقة مساحتها  90 م²</td>
+                <td>7000000 ل.س</td>
+                <td>
+                    <input type="radio" name="property" value="property10">
+                    <button type="button" onclick="showDetails(this, 'property10')">إظهار التفاصيل</button>
+                </td>
+            </tr>
+
+
+
+
+
+                <!-- Add more properties as needed -->
+            </tbody>
+        </table>
+       <a href="home (2).html"> <button type="button" onclick="proceedToNextPage()">متابعة</button></a>
+    </form>
+</body>
+</html>
+
+
+
+
+   
+
+
+
+
+
+   
+   
+
+
